@@ -1,11 +1,21 @@
 const express = require('express');
 const { spawn } = require('child_process');
 const path = require('path');
+const {existsSync, mkdirSync} = require("node:fs");
 
 const app = express();
 const PORT = 3000;
-const streamPath = path.join(__dirname, '../public/stream/output.m3u8');
+const streamDir = path.join(__dirname, '../public/stream');
+const streamPath = path.join(streamDir, 'output.m3u8');
 const isDebugMode = process.env.DEBUG === 'true' || process.env.NODE_ENV === 'development';
+
+// Ensure stream directory exists
+function ensureDirectoryExists(directory) {
+    if (!existsSync(directory)) {
+        console.log(`Creating directory: ${directory}`);
+        mkdirSync(directory, { recursive: true });
+    }
+}
 
 let ffmpegProcess = null;
 
@@ -16,6 +26,7 @@ function startFFmpeg() {
         return;
     }
 
+    ensureDirectoryExists(streamDir);
     console.log('Iniciando FFmpeg...');
 
     ffmpegProcess = spawn('ffmpeg', [
