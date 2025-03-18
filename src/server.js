@@ -20,12 +20,11 @@ function startFFmpeg() {
 
     ffmpegProcess = spawn('ffmpeg', [
         '-i', process.env.STREAM_URL, // Cambia esto por la URL de tu cámara
-        '-c:v', 'libx264',
-        '-preset', 'fast',
+        '-c:v', 'copy',
         '-an',
         '-f', 'hls',
         '-hls_time', '2',
-        '-hls_list_size', '3',
+        '-hls_list_size', '1',
         '-hls_flags', 'delete_segments',
         streamPath
     ]);
