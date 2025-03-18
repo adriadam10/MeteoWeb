@@ -1,0 +1,10 @@
+services:
+  meteoweb:
+    container_name: meteoweb
+    build: .
+    ports:
+      - "3000:3000"
+    environment:
+      - NODE_ENV=production
+      - STREAM_URL="rtsp://user:pass@ip"
+      - WEATHER_URL="https://domain.com/data"
