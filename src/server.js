@@ -46,7 +46,7 @@ app.get('/api/weather-url', (req, res) => {
 });
 
 // Servir archivos estáticos
-app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static(path.join(__dirname, '../public')));
 
 // Iniciar el servidor
 app.listen(PORT, () => {
