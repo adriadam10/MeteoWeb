@@ -5,6 +5,7 @@ const path = require('path');
 const app = express();
 const PORT = 3000;
 const streamPath = path.join(__dirname, '../public/stream/output.m3u8');
+const isDebugMode = process.env.DEBUG === 'true' || process.env.NODE_ENV === 'development';
 
 let ffmpegProcess = null;
 
@@ -29,7 +30,10 @@ function startFFmpeg() {
         streamPath
     ]);
 
-    //ffmpegProcess.stderr.on('data', (data) => console.error(`FFmpeg: ${data}`));
+    if (isDebugMode) {
+        ffmpegProcess.stderr.on('data', (data) => console.error(`FFmpeg: ${data}`));
+    }
+
     ffmpegProcess.on('close', (code) => {
         console.log(`FFmpeg cerrado con código: ${code}`);
         ffmpegProcess = null; // Reinicia el proceso si se cierra inesperadamente
