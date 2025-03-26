@@ -18,14 +18,19 @@ function ensureDirectoryExists(directory) {
 }
 
 
+// Make this a module-level variable for proper tracking
+let ffmpegProcess = null;
+
 function startFFmpeg() {
     ensureDirectoryExists(streamDir);
-    let ffmpegProcess;
 
-    function spawnFfmpeg(){
-        if (ffmpegProcess) {
-            ffmpegProcess.kill();
-        }
+    if (ffmpegProcess) {
+        console.log('FFmpeg already running, not starting another instance');
+        return;
+    }
+
+    try {
+        console.log('Starting FFmpeg...');
         ffmpegProcess = spawn('ffmpeg', [
             '-i', process.env.STREAM_URL,
             '-c:v', 'copy',
@@ -36,21 +41,30 @@ function startFFmpeg() {
             '-hls_flags', 'delete_segments',
             streamPath
         ]);
-    }
-    console.log('Starting FFmpeg...');
-    spawnFfmpeg();
 
-    if (isDebugMode) {
-        ffmpegProcess.stderr.on('data', (data) => console.error(`FFmpeg: ${data}`));
-    }
+        if (isDebugMode) {
+            ffmpegProcess.stderr.on('data', (data) => console.error(`FFmpeg: ${data}`));
+        }
 
-    ffmpegProcess.on('close', (code) => {
-        console.log(`FFmpeg closed with code: ${code}`);
-        console.log('Restarting FFmpeg...');
-        setTimeout(() => {
-            spawnFfmpeg();
-        }, 3000);
-    });
+        ffmpegProcess.on('error', (err) => {
+            console.error('Failed to start FFmpeg process:', err);
+            ffmpegProcess = null;
+        });
+
+        ffmpegProcess.on('close', (code) => {
+            console.log(`FFmpeg closed with code: ${code}`);
+            ffmpegProcess = null;
+
+            // Add delay before restart to prevent rapid restart loops
+            setTimeout(() => {
+                console.log('Attempting to restart FFmpeg...');
+                startFFmpeg();
+            }, 3000);
+        });
+    } catch (error) {
+        console.error('Error starting FFmpeg:', error);
+        ffmpegProcess = null;
+    }
 }
 
 // Endpoint para obtener la URL de datos meteorológicos
