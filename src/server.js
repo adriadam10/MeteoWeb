@@ -17,36 +17,39 @@ function ensureDirectoryExists(directory) {
     }
 }
 
-let ffmpegProcess = null;
 
-// Función para iniciar FFmpeg si no está corriendo
 function startFFmpeg() {
-    if (ffmpegProcess) {
-        console.log('FFmpeg ya está corriendo.');
-        return;
-    }
-
     ensureDirectoryExists(streamDir);
-    console.log('Iniciando FFmpeg...');
+    let ffmpegProcess;
 
-    ffmpegProcess = spawn('ffmpeg', [
-        '-i', process.env.STREAM_URL, // Cambia esto por la URL de tu cámara
-        '-c:v', 'copy',
-        '-an',
-        '-f', 'hls',
-        '-hls_time', '2',
-        '-hls_list_size', '1',
-        '-hls_flags', 'delete_segments',
-        streamPath
-    ]);
+    function spawnFfmpeg(){
+        if (ffmpegProcess) {
+            ffmpegProcess.kill();
+        }
+        ffmpegProcess = spawn('ffmpeg', [
+            '-i', process.env.STREAM_URL,
+            '-c:v', 'copy',
+            '-an',
+            '-f', 'hls',
+            '-hls_time', '2',
+            '-hls_list_size', '1',
+            '-hls_flags', 'delete_segments',
+            streamPath
+        ]);
+    }
+    console.log('Starting FFmpeg...');
+    spawnFfmpeg();
 
     if (isDebugMode) {
         ffmpegProcess.stderr.on('data', (data) => console.error(`FFmpeg: ${data}`));
     }
 
     ffmpegProcess.on('close', (code) => {
-        console.log(`FFmpeg cerrado con código: ${code}`);
-        ffmpegProcess = null; // Reinicia el proceso si se cierra inesperadamente
+        console.log(`FFmpeg closed with code: ${code}`);
+        console.log('Restarting FFmpeg...');
+        setTimeout(() => {
+            spawnFfmpeg();
+        }, 3000);
     });
 }
 
@@ -60,6 +63,6 @@ app.use(express.static(path.join(__dirname, '../public')));
 
 // Iniciar el servidor
 app.listen(PORT, () => {
-    console.log(`Servidor corriendo en http://localhost:${PORT}`);
-    startFFmpeg(); // Iniciar FFmpeg cuando arranca el servidor
+    console.log(`Server running in: http://localhost:${PORT}`);
+    startFFmpeg();
 });
