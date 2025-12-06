@@ -64,6 +64,11 @@ function startFFmpeg() {
     } catch (error) {
         console.error('Error starting FFmpeg:', error);
         ffmpegProcess = null;
+
+        setTimeout(() => {
+            console.log('Attempting to restart FFmpeg after error...');
+            startFFmpeg();
+        }, 3000);
     }
 }
 
