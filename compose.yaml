@@ -1,0 +1,48 @@
+# Full stack: meteoweb + go2rtc. Production can run the same services from the published image.
+services:
+  meteoweb:
+    build: .
+    image: adriadam10/meteoweb:latest
+    container_name: meteoweb
+    restart: unless-stopped
+    env_file: .env
+    environment:
+      GO2RTC_URL: http://go2rtc:1984
+    ports:
+      - "127.0.0.1:3000:3000"
+    volumes:
+      - data:/data
+    depends_on:
+      go2rtc:
+        condition: service_started
+
+  go2rtc:
+    image: alexxit/go2rtc:1.9.14
+    container_name: meteoweb-go2rtc
+    restart: unless-stopped
+    env_file: .env
+    configs:
+      - source: go2rtc
+        target: /config/go2rtc.yaml
+    # WebRTC media goes straight to the browser; signalling still goes through meteoweb.
+    ports:
+      - "8555:8555/tcp"
+      - "8555:8555/udp"
+
+volumes:
+  data:
+
+configs:
+  go2rtc:
+    # `$$` keeps compose from interpolating: go2rtc expands ${VAR} itself from its env.
+    content: |
+      streams:
+        cam: $${STREAM_URL}
+      api:
+        listen: ":1984"
+      rtsp:
+        listen: ""
+      webrtc:
+        listen: ":8555"
+        candidates:
+          - $${WEBRTC_CANDIDATE:stun:8555}

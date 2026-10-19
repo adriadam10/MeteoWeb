@@ -1,0 +1,271 @@
+msgid ""
+msgstr ""
+"POT-Creation-Date: 2026-10-19 11:29+0200\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: @lingui/cli\n"
+"Language: en\n"
+
+#: src/components/HistoryChart.tsx:80
+msgid "{label}: highest {max}"
+msgstr "{label}: highest {max}"
+
+#: src/components/HistoryChart.tsx:75
+msgid "24 h"
+msgstr "24 h"
+
+#: src/components/HistoryChart.tsx:75
+msgid "30 days"
+msgstr "30 days"
+
+#: src/components/HistoryChart.tsx:75
+msgid "7 days"
+msgstr "7 days"
+
+#: src/components/HistoryChart.tsx:77
+msgid "Average"
+msgstr "Average"
+
+#: src/components/Conditions.tsx:114
+msgid "avg"
+msgstr "avg"
+
+#: src/components/Camera.tsx:101
+msgid "Camera offline · last image {when} · reconnecting…"
+msgstr "Camera offline · last image {when} · reconnecting…"
+
+#: src/components/Camera.tsx:79
+msgid "Camera offline, reconnecting…"
+msgstr "Camera offline, reconnecting…"
+
+#: src/components/Camera.tsx:128
+msgid "Connecting…"
+msgstr "Connecting…"
+
+#: src/components/Conditions.tsx:13
+msgid "Current conditions"
+msgstr "Current conditions"
+
+#: src/components/Conditions.tsx:18
+msgid "Dew point"
+msgstr "Dew point"
+
+#: src/components/Conditions.tsx:86
+msgid "E"
+msgstr "E"
+
+#: src/components/Conditions.tsx:85
+msgid "ENE"
+msgstr "ENE"
+
+#: src/components/Conditions.tsx:87
+msgid "ESE"
+msgstr "ESE"
+
+#: src/components/Conditions.tsx:127
+msgid "Extreme"
+msgstr "Extreme"
+
+#: src/components/Conditions.tsx:61
+msgid "Feels like"
+msgstr "Feels like"
+
+#: src/components/Camera.tsx:60
+#: src/components/Camera.tsx:61
+msgid "Full screen"
+msgstr "Full screen"
+
+#: src/components/Conditions.tsx:125
+msgid "High"
+msgstr "High"
+
+#: src/components/HistoryChart.tsx:87
+msgid "History"
+msgstr "History"
+
+#: src/components/HistoryChart.tsx:131
+msgid "History unavailable"
+msgstr "History unavailable"
+
+#: src/components/Conditions.tsx:15
+#: src/components/HistoryChart.tsx:68
+msgid "Humidity"
+msgstr "Humidity"
+
+#: src/components/Header.tsx:61
+msgid "Language"
+msgstr "Language"
+
+#: src/components/Camera.tsx:88
+msgid "Last camera image, taken {when}"
+msgstr "Last camera image, taken {when}"
+
+#: src/components/Camera.tsx:115
+msgid "Live"
+msgstr "Live"
+
+#: src/components/Camera.tsx:48
+msgid "Live camera"
+msgstr "Live camera"
+
+#: src/App.tsx:33
+#: src/components/Header.tsx:26
+#: src/components/HistoryChart.tsx:131
+msgid "Loading…"
+msgstr "Loading…"
+
+#: src/components/Conditions.tsx:123
+msgid "Low"
+msgstr "Low"
+
+#: src/components/Conditions.tsx:166
+msgid "max"
+msgstr "max"
+
+#: src/components/Conditions.tsx:65
+#: src/components/HistoryChart.tsx:77
+msgid "Max"
+msgstr "Max"
+
+#: src/components/Conditions.tsx:170
+msgid "min"
+msgstr "min"
+
+#: src/components/Conditions.tsx:69
+#: src/components/HistoryChart.tsx:77
+msgid "Min"
+msgstr "Min"
+
+#: src/components/Conditions.tsx:124
+msgid "Moderate"
+msgstr "Moderate"
+
+#: src/components/Conditions.tsx:82
+msgid "N"
+msgstr "N"
+
+#: src/components/Conditions.tsx:84
+msgid "NE"
+msgstr "NE"
+
+#: src/components/Conditions.tsx:83
+msgid "NNE"
+msgstr "NNE"
+
+#: src/components/Conditions.tsx:97
+msgid "NNW"
+msgstr "NNW"
+
+#: src/components/Conditions.tsx:96
+msgid "NW"
+msgstr "NW"
+
+#: src/components/Camera.tsx:124
+msgid "Offline"
+msgstr "Offline"
+
+#: src/components/HistoryChart.tsx:106
+msgid "Period"
+msgstr "Period"
+
+#: src/components/Conditions.tsx:21
+#: src/components/HistoryChart.tsx:69
+msgid "Pressure"
+msgstr "Pressure"
+
+#: src/components/HistoryChart.tsx:71
+msgid "Rain"
+msgstr "Rain"
+
+#: src/components/Conditions.tsx:26
+msgid "Rain today"
+msgstr "Rain today"
+
+#: src/components/Conditions.tsx:29
+msgid "Rate"
+msgstr "Rate"
+
+#: src/components/Conditions.tsx:90
+msgid "S"
+msgstr "S"
+
+#: src/components/Conditions.tsx:88
+msgid "SE"
+msgstr "SE"
+
+#: src/components/HistoryChart.tsx:72
+msgid "Solar"
+msgstr "Solar"
+
+#: src/components/Conditions.tsx:38
+msgid "Solar radiation"
+msgstr "Solar radiation"
+
+#: src/components/Conditions.tsx:89
+msgid "SSE"
+msgstr "SSE"
+
+#: src/components/Conditions.tsx:91
+msgid "SSW"
+msgstr "SSW"
+
+#: src/components/Header.tsx:37
+msgid "Station data is old"
+msgstr "Station data is old"
+
+#: src/App.tsx:33
+#: src/components/Header.tsx:37
+msgid "Station unreachable"
+msgstr "Station unreachable"
+
+#: src/components/Conditions.tsx:92
+msgid "SW"
+msgstr "SW"
+
+#: src/components/Conditions.tsx:54
+#: src/components/HistoryChart.tsx:67
+msgid "Temperature"
+msgstr "Temperature"
+
+#: src/components/HistoryChart.tsx:77
+msgid "Total"
+msgstr "Total"
+
+#. placeholder {0}: formatRelative(current.observed_at, now)
+#: src/components/Header.tsx:23
+msgid "Updated {0}"
+msgstr "Updated {0}"
+
+#: src/components/HistoryChart.tsx:73
+msgid "UV"
+msgstr "UV"
+
+#: src/components/Conditions.tsx:32
+msgid "UV index"
+msgstr "UV index"
+
+#: src/components/HistoryChart.tsx:91
+msgid "Variable"
+msgstr "Variable"
+
+#: src/components/Conditions.tsx:126
+msgid "Very high"
+msgstr "Very high"
+
+#: src/components/Conditions.tsx:94
+msgid "W"
+msgstr "W"
+
+#: src/components/Conditions.tsx:100
+#: src/components/HistoryChart.tsx:70
+msgid "Wind"
+msgstr "Wind"
+
+#: src/components/Conditions.tsx:95
+msgid "WNW"
+msgstr "WNW"
+
+#: src/components/Conditions.tsx:93
+msgid "WSW"
+msgstr "WSW"

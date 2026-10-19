@@ -1,0 +1,47 @@
+# Updates are merged on their own once CI passes (.github/workflows/dependabot-automerge.yml).
+version: 2
+
+updates:
+  - package-ecosystem: github-actions
+    directory: /
+    schedule: &daily
+      interval: daily
+      time: "09:00"
+      timezone: Europe/Madrid
+    commit-message:
+      prefix: ci
+
+  # Base images in the Dockerfile and go2rtc in compose.yaml.
+  - package-ecosystem: docker
+    directory: /
+    schedule: *daily
+    commit-message:
+      prefix: build
+
+  - package-ecosystem: docker-compose
+    directory: /
+    schedule: *daily
+    commit-message:
+      prefix: build
+
+  - package-ecosystem: uv
+    directory: /backend
+    schedule: *daily
+    commit-message:
+      prefix: deps
+      include: scope
+    groups:
+      python-minor-patch:
+        patterns: ["*"]
+        update-types: [minor, patch]
+
+  - package-ecosystem: bun
+    directory: /frontend
+    schedule: *daily
+    commit-message:
+      prefix: deps
+      include: scope
+    groups:
+      frontend-minor-patch:
+        patterns: ["*"]
+        update-types: [minor, patch]

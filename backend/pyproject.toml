@@ -1,0 +1,31 @@
+[project]
+name = "meteoweb"
+version = "2.0.0"
+description = "Live camera and weather station dashboard"
+requires-python = ">=3.14"
+dependencies = [
+    "fastapi>=0.120",
+    "httpx>=0.28",
+    "httptools>=0.6",
+    "uvicorn>=0.38",
+    "uvloop>=0.21",
+    "websockets>=15",
+]
+
+[dependency-groups]
+dev = ["pytest>=8", "pytest-asyncio>=1", "ruff>=0.14"]
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.ruff]
+line-length = 100
+target-version = "py314"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "B", "UP", "SIM", "ASYNC", "RUF"]
+
+[tool.pytest.ini_options]
+asyncio_mode = "auto"
+testpaths = ["tests"]

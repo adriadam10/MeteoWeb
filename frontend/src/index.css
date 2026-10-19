@@ -1,0 +1,85 @@
+@import "tailwindcss";
+@import "@fontsource/fira-sans/latin-400.css";
+@import "@fontsource/fira-sans/latin-500.css";
+@import "@fontsource/fira-sans/latin-600.css";
+@import "@fontsource/fira-sans/latin-ext-400.css";
+@import "@fontsource/fira-sans/latin-ext-500.css";
+@import "@fontsource/fira-sans/latin-ext-600.css";
+@import "@fontsource-variable/fira-code";
+
+/* Palette from design-system/meteoweb/MASTER.md; the dark one is derived from it. */
+:root {
+  color-scheme: light dark;
+  --bg: #f0f9ff;
+  --fg: #0f172a;
+  --card: #ffffff;
+  --card-fg: #0f172a;
+  --muted: #eff7fb;
+  --muted-fg: #475569;
+  --border: #d5e8f2;
+  --primary: #0284c7;
+  --on-primary: #ffffff;
+  --accent: #b45309;
+  --accent-soft: #f59e0b;
+  --danger: #dc2626;
+  --ok: #15803d;
+  --chart-band: rgb(2 132 199 / 0.15);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #0b1220;
+    --fg: #e2e8f0;
+    --card: #111a2e;
+    --card-fg: #e2e8f0;
+    --muted: #16213a;
+    --muted-fg: #94a3b8;
+    --border: #1f2c47;
+    --primary: #38bdf8;
+    --on-primary: #0b1220;
+    --accent: #fbbf24;
+    --accent-soft: #f59e0b;
+    --danger: #f87171;
+    --ok: #4ade80;
+    --chart-band: rgb(56 189 248 / 0.18);
+  }
+}
+
+@theme inline {
+  --color-bg: var(--bg);
+  --color-fg: var(--fg);
+  --color-card: var(--card);
+  --color-card-fg: var(--card-fg);
+  --color-muted: var(--muted);
+  --color-muted-fg: var(--muted-fg);
+  --color-border: var(--border);
+  --color-primary: var(--primary);
+  --color-on-primary: var(--on-primary);
+  --color-accent: var(--accent);
+  --color-danger: var(--danger);
+  --color-ok: var(--ok);
+  --font-sans: "Fira Sans", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "Fira Code Variable", ui-monospace, monospace;
+}
+
+body {
+  @apply bg-bg font-sans text-fg antialiased;
+}
+
+meteo-stream video {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  background: #000;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    /* biome-ignore lint/complexity/noImportantStyles: reduced motion must win over every component */
+    animation-duration: 0.01ms !important;
+    /* biome-ignore lint/complexity/noImportantStyles: same as above */
+    transition-duration: 0.01ms !important;
+  }
+}

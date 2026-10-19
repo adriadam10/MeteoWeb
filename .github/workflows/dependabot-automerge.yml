@@ -1,0 +1,59 @@
+name: Dependabot Auto-Merge
+
+on:
+  pull_request:
+
+permissions:
+  contents: write
+  pull-requests: write
+  checks: read
+  actions: write
+
+jobs:
+  dependabot:
+    runs-on: ubuntu-latest
+    if: github.actor == 'dependabot[bot]'
+
+    steps:
+      - name: Dependabot metadata
+        id: metadata
+        uses: dependabot/fetch-metadata@v3
+        with:
+          github-token: "${{ secrets.GITHUB_TOKEN }}"
+
+      - name: Wait for tests to pass
+        uses: lewagon/wait-on-check-action@v1.9.1
+        with:
+          ref: ${{ github.event.pull_request.head.sha }}
+          running-workflow-name: dependabot
+          repo-token: ${{ secrets.GITHUB_TOKEN }}
+          wait-interval: 10
+          check-regexp: '^(backend|frontend|image)$'
+
+      - name: Approve PR
+        run: gh pr review --approve "$PR_URL"
+        env:
+          PR_URL: ${{ github.event.pull_request.html_url }}
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Merge Dependabot PRs after checks pass
+        run: |
+          for attempt in 1 2 3 4 5; do
+            if gh pr merge --squash --delete-branch "$PR_URL"; then
+              exit 0
+            fi
+            echo "Merge attempt $attempt failed (base branch likely moved), retrying in 10s..."
+            sleep 10
+          done
+          exit 1
+        env:
+          PR_URL: ${{ github.event.pull_request.html_url }}
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      # A merge made with GITHUB_TOKEN doesn't fire `push`, so the image would not be
+      # rebuilt; workflow_dispatch is the one event that token is allowed to trigger.
+      - name: Publish the updated image
+        run: gh workflow run ci.yml --ref master --repo "$REPO"
+        env:
+          REPO: ${{ github.repository }}
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
