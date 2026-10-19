@@ -5,7 +5,8 @@ Web con una cámara IP en directo junto a los datos de una estación meteorológ
 - **Vídeo**: [go2rtc](https://github.com/AlexxIT/go2rtc) lee el RTSP de la cámara y lo sirve por WebRTC (latencia < 1 s), con MSE o HLS como respaldo. El navegador solo habla con MeteoWeb: el backend hace de proxy del WebSocket de go2rtc, cuya API no se publica.
 - **Resiliencia**: el player se reconecta solo si se cae el WebSocket, si go2rtc da error o si la imagen se congela. Mientras la cámara está caída se ve la última imagen guardada (el backend guarda una cada minuto en `/data/last.jpg`) con su hora y un aviso de que está offline.
 - **Tiempo**: tarjetas con los datos actuales y los máximos y mínimos del día, más gráficas de 24 h, 7 días y 30 días. Salen de los endpoints JSON no oficiales de Weathercloud (ver [docs/weathercloud.md](docs/weathercloud.md)), con caché de 1 minuto para los datos actuales y de 10 minutos para el histórico.
-- **UI**: PWA instalable, modo claro u oscuro según el sistema, en inglés y castellano (cookie, si no `Accept-Language`).
+- **UI**: modo claro u oscuro según el sistema, en inglés y castellano (cookie, si no `Accept-Language`).
+- **PWA**: el backend sirve el manifest y `/offline` traducidos. `frontend/public/sw.js` solo guarda esa página offline, que se recarga sola cuando vuelve la conexión; ni la API ni el vídeo se cachean nunca. Hay botón «Instalar app» cuando el navegador lo ofrece. Los iconos se generan desde `public/logo.svg` en el build (`bun run icons`).
 
 ## Estructura
 

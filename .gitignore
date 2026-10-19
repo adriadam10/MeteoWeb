@@ -13,7 +13,6 @@ __pycache__/
 # Frontend
 node_modules/
 frontend/dist/
-frontend/dev-dist/
 
 # Local
 scratchpad/
@@ -21,3 +20,6 @@ scratchpad/
 .vscode/
 .playwright-mcp/
 data/
+# PWA icons, generated from frontend/public/logo.svg by `bun run icons`
+frontend/public/*.png
+frontend/public/favicon.ico

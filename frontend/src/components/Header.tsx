@@ -1,9 +1,10 @@
 import { useLingui } from "@lingui/react/macro";
-import { ExternalLink, WifiOff } from "lucide-react";
+import { Download, ExternalLink, WifiOff } from "lucide-react";
 import { useEffect, useState } from "react";
 import type { Current } from "../lib/api";
 import { formatRelative } from "../lib/format";
 import { changeLocale, LOCALES, type Locale } from "../lib/i18n";
+import { useInstall } from "../lib/pwa";
 
 const STALE_AFTER_MS = 30 * 60_000;
 
@@ -48,9 +49,27 @@ export function Header({ current, error }: { current: Current | null; error: str
             <ExternalLink aria-hidden className="size-4" />
           </a>
         )}
+        <InstallButton />
         <LocalePicker />
       </div>
     </header>
+  );
+}
+
+// Only while Chrome offers it; elsewhere the browser menu installs it.
+function InstallButton() {
+  const { t } = useLingui();
+  const install = useInstall();
+  if (!install) return null;
+  return (
+    <button
+      type="button"
+      onClick={install}
+      className="flex min-h-11 cursor-pointer items-center gap-1.5 rounded-full px-3 text-sm font-medium text-muted-fg transition-colors hover:bg-muted hover:text-fg focus-visible:outline-2 focus-visible:outline-primary"
+    >
+      <Download aria-hidden className="size-4" />
+      {t`Install app`}
+    </button>
   );
 }
 

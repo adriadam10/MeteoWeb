@@ -1,0 +1,18 @@
+# Backend strings (manifest and offline page). Source language: English.
+# The interface itself is translated in frontend/src/locales/es.po.
+msgid ""
+msgstr ""
+"Language: es\n"
+"Content-Type: text/plain; charset=utf-8\n"
+
+msgid "Live camera and weather station readings."
+msgstr "Cámara en directo y datos de la estación meteorológica."
+
+msgid "No connection"
+msgstr "Sin conexión"
+
+msgid "MeteoWeb needs the network for the camera and the readings. This page reloads by itself when the connection comes back."
+msgstr "MeteoWeb necesita la red para la cámara y los datos. Esta página se recarga sola cuando vuelve la conexión."
+
+msgid "Try again"
+msgstr "Reintentar"

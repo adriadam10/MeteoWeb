@@ -93,7 +93,11 @@ msgstr "Histórico no disponible"
 msgid "Humidity"
 msgstr "Humedad"
 
-#: src/components/Header.tsx:61
+#: src/components/Header.tsx:71
+msgid "Install app"
+msgstr "Instalar app"
+
+#: src/components/Header.tsx:80
 msgid "Language"
 msgstr "Idioma"
 
@@ -110,7 +114,7 @@ msgid "Live camera"
 msgstr "Cámara en directo"
 
 #: src/App.tsx:33
-#: src/components/Header.tsx:26
+#: src/components/Header.tsx:27
 #: src/components/HistoryChart.tsx:131
 msgid "Loading…"
 msgstr "Cargando…"
@@ -210,12 +214,12 @@ msgstr "SSE"
 msgid "SSW"
 msgstr "SSO"
 
-#: src/components/Header.tsx:37
+#: src/components/Header.tsx:38
 msgid "Station data is old"
 msgstr "Datos de la estación antiguos"
 
 #: src/App.tsx:33
-#: src/components/Header.tsx:37
+#: src/components/Header.tsx:38
 msgid "Station unreachable"
 msgstr "Estación no disponible"
 
@@ -233,7 +237,7 @@ msgid "Total"
 msgstr "Total"
 
 #. placeholder {0}: formatRelative(current.observed_at, now)
-#: src/components/Header.tsx:23
+#: src/components/Header.tsx:24
 msgid "Updated {0}"
 msgstr "Actualizado {0}"
 

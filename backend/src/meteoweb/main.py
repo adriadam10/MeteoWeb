@@ -11,7 +11,7 @@ from fastapi import FastAPI, Request
 from fastapi.responses import JSONResponse
 from fastapi.staticfiles import StaticFiles
 
-from meteoweb import api, frames, stream
+from meteoweb import api, frames, pwa, stream
 from meteoweb.config import Settings, load_settings
 from meteoweb.frames import FrameKeeper
 from meteoweb.weathercloud import WeathercloudClient, WeathercloudError
@@ -62,8 +62,17 @@ def create_app(settings: Settings | None = None) -> FastAPI:
     async def weathercloud_error(_: Request, exc: WeathercloudError) -> JSONResponse:
         return JSONResponse(status_code=502, content={"detail": str(exc)})
 
+    @app.middleware("http")
+    async def content_language(request: Request, call_next):
+        # The service worker re-stores /offline when a page comes in another language.
+        response = await call_next(request)
+        if response.headers.get("content-type", "").startswith("text/html"):
+            response.headers.setdefault("Content-Language", pwa.locale_of(request))
+        return response
+
     app.include_router(api.router, prefix=API_PREFIX)
     app.include_router(stream.router, prefix=API_PREFIX)
+    app.include_router(pwa.router)
     if settings.static_dir.is_dir():
         app.mount("/", StaticFiles(directory=settings.static_dir, html=True), name="frontend")
     return app
