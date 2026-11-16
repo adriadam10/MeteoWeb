@@ -4,7 +4,7 @@ version: 2
 updates:
   - package-ecosystem: github-actions
     directory: /
-    schedule: &daily
+    schedule:
       interval: daily
       time: "09:00"
       timezone: Europe/Madrid
@@ -14,19 +14,28 @@ updates:
   # Base images in the Dockerfile and go2rtc in compose.yaml.
   - package-ecosystem: docker
     directory: /
-    schedule: *daily
+    schedule:
+      interval: daily
+      time: "09:00"
+      timezone: Europe/Madrid
     commit-message:
       prefix: build
 
   - package-ecosystem: docker-compose
     directory: /
-    schedule: *daily
+    schedule:
+      interval: daily
+      time: "09:00"
+      timezone: Europe/Madrid
     commit-message:
       prefix: build
 
   - package-ecosystem: uv
     directory: /backend
-    schedule: *daily
+    schedule:
+      interval: daily
+      time: "09:00"
+      timezone: Europe/Madrid
     commit-message:
       prefix: deps
       include: scope
@@ -37,7 +46,10 @@ updates:
 
   - package-ecosystem: bun
     directory: /frontend
-    schedule: *daily
+    schedule:
+      interval: daily
+      time: "09:00"
+      timezone: Europe/Madrid
     commit-message:
       prefix: deps
       include: scope
