@@ -17,7 +17,7 @@ services:
         condition: service_started
 
   go2rtc:
-    image: alexxit/go2rtc:1.9.14
+    image: alexxit/go2rtc:1.9.15
     container_name: meteoweb-go2rtc
     restart: unless-stopped
     env_file: .env
