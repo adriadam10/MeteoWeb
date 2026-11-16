@@ -10,7 +10,7 @@ RUN --mount=type=cache,target=/root/.bun/install/cache bun install --frozen-lock
 COPY frontend/ ./
 RUN bun run build
 
-FROM python:3.14-slim AS backend
+FROM python:3.15-slim AS backend
 COPY --from=ghcr.io/astral-sh/uv:0.13 /uv /usr/local/bin/uv
 ENV UV_COMPILE_BYTECODE=1 UV_LINK_MODE=copy UV_PYTHON_DOWNLOADS=0
 WORKDIR /app
@@ -20,7 +20,7 @@ RUN --mount=type=cache,target=/root/.cache/uv uv sync --frozen --no-dev --no-ins
 COPY backend/src ./src
 RUN --mount=type=cache,target=/root/.cache/uv uv sync --frozen --no-dev --no-editable
 
-FROM python:3.14-slim
+FROM python:3.15-slim
 ENV PYTHONDONTWRITEBYTECODE=1 PYTHONUNBUFFERED=1 \
     PATH="/app/.venv/bin:$PATH" STATIC_DIR=/app/static DATA_DIR=/data
 WORKDIR /app
