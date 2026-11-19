@@ -436,11 +436,11 @@ wheels = [
 
 [[package]]
 name = "types-polib"
-version = "1.2.0.20260518"
+version = "1.2.0.20261115"
 source = { registry = "https://pypi.org/simple" }
-sdist = { url = "https://files.pythonhosted.org/packages/f3/a0/bc3cfd4d6cb2e9798a28579dd4dd39675cde66a52dd9f5f158b0afc80420/types_polib-1.2.0.20260518.tar.gz", hash = "sha256:2b593a1c6eceb1c4d2ef41054d24ec17c5ee3ec4f2a29a26ece75d8f5715420f", size = 9285, upload-time = "2026-05-18T06:02:24.073Z" }
+sdist = { url = "https://files.pythonhosted.org/packages/46/49/2174e2c3c544ee26211b2f2e1f4526a3dede9e4ea0bcaf43f592c0ab63ab/types_polib-1.2.0.20261115.tar.gz", hash = "sha256:94a3d68e55154cf2d7497000496032ac819ce8149469f72def8ac757b7fb7915", size = 9461, upload-time = "2026-11-15T08:33:30.559Z" }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/67/05/11cf19d219d4cdf53bbf8b3e0c9254d7a04d4b1a6df966124421e407138e/types_polib-1.2.0.20260518-py3-none-any.whl", hash = "sha256:1a6b9bd7eab3672a1c2e54c939b3fb720241e2b671e34a60cb82d2f791eba025", size = 8528, upload-time = "2026-05-18T06:02:22.737Z" },
+    { url = "https://files.pythonhosted.org/packages/5d/66/aa8a0d72ea8921e75ae6bad5836732d4109a2d1312157f368c734af00ea8/types_polib-1.2.0.20261115-py3-none-any.whl", hash = "sha256:14e3667b1005e94f2574d33e5edb49bde44dbec807a60a6bcebd0abdb379e6c6", size = 8590, upload-time = "2026-11-15T08:33:29.552Z" },
 ]
 
 [[package]]
